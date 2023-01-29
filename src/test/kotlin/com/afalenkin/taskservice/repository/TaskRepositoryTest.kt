@@ -25,8 +25,8 @@ class TaskRepositoryTest {
     @Sql("/sql/tasks-test-data.sql")
     @Sql("/sql/clear.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     fun `delete task by id test`() {
-        repository.deleteById(1)
-        assertThat(repository.findById(1)).isEmpty
+        repository.deleteById(101)
+        assertThat(repository.findById(101)).isEmpty
     }
 
     @Test
@@ -39,7 +39,7 @@ class TaskRepositoryTest {
     @Test
     @Sql("/sql/tasks-test-data.sql")
     fun `get task by id test`() {
-        val task = repository.findById(1)
+        val task = repository.findById(101)
         assertThat(task).isNotEmpty
     }
 
@@ -68,4 +68,20 @@ class TaskRepositoryTest {
     fun `description unique test`() {
         assertThat(repository.descriptionIsNotUnique("dummy task")).isFalse()
     }
+
+    @Test
+    @Sql("/sql/tasks-test-data.sql")
+    @Sql("/sql/clear.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    fun `create task test`() {
+        val new = Task(
+            id = 10,
+            description = "new task",
+            hasReminder = true,
+            isOpen = true,
+            priority = Priority.LOW
+        )
+        repository.save(new)
+        assertThat(repository.findAll().size).isEqualTo(recordsCount + 1)
+    }
+
 }
