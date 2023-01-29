@@ -17,7 +17,7 @@ data class Task(
     @Id
     @GeneratedValue(generator = "task_sequence", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "task_sequence", sequenceName = "task_sequence", allocationSize = 1)
-    val id: Long,
+    val id: Long? = null,
 
     @NotBlank
     @Column(name = "description", nullable = false, unique = true)

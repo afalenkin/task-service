@@ -7,7 +7,6 @@ import com.afalenkin.taskservice.model.Priority
  *oxqq@ya.ru
  */
 data class TaskUpdateRequest(
-    val id: Long?,
     val description: String?,
     val hasReminder: Boolean?,
     val isOpen: Boolean?,
