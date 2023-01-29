@@ -21,6 +21,6 @@ interface TaskRepository : JpaRepository<Task, Long> {
     @Query(value = "SELECT t FROM Task t where t.isOpen = FALSE")
     fun findAllClosedTasks(): List<Task>
 
-    @Query(value = "SELECT CASE WHEN COUNT(t > 0) THEN TRUE ELSE FALSE END FROM Task t WHERE t.description =: description")
+    @Query(value = "SELECT CASE WHEN COUNT(t) > 0 THEN TRUE ELSE FALSE END FROM Task t WHERE LOWER(t.description) LIKE(LOWER(:description))")
     fun descriptionIsNotUnique(@Param("description") description: String): Boolean
 }

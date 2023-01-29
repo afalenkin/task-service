@@ -88,7 +88,7 @@ class TaskService(
     }
 
     private fun checkDescription(description: String) {
-        if (!repository.descriptionIsNotUnique(description)) {
+        if (repository.descriptionIsNotUnique(description)) {
             throw BadRequestException("There is already exists task with description =  $description")
         }
     }

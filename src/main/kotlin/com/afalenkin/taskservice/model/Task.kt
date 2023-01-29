@@ -23,7 +23,7 @@ data class Task(
     @Column(name = "description", nullable = false, unique = true)
     var description: String,
 
-    @Column(name = "has_remind", nullable = false)
+    @Column(name = "has_reminder", nullable = false)
     var hasReminder: Boolean,
 
     @Column(name = "is_open", nullable = false)
