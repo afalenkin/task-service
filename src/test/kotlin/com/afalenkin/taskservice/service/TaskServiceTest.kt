@@ -108,5 +108,7 @@ internal class TaskServiceTest {
         every { mockRepo.deleteById(capture(idSlot)) } returns Unit
         service.delete(1L)
         verify { mockRepo.deleteById(capture(idSlot)) }
+
+        assertThat(idSlot.captured).isEqualTo(1L)
     }
 }
