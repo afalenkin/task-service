@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("api/v1/tasks")
 class TaskController(
-    val service: TaskService
+    private val service: TaskService
 ) {
 
     @GetMapping
